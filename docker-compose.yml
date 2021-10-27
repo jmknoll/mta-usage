@@ -10,13 +10,13 @@ services:
     environment:
       - POSTGRES_USER=db_user
       - POSTGRES_PASSWORD=db_password
-    migration:
-      build: .
-      environment:
-        - APP_ENV=${APP_ENV}
-      command: flask db upgrade
-      depends_on:
-        - db-postgres
+  migration:
+    build: .
+    environment:
+      - APP_ENV=${APP_ENV}
+    command: flask db upgrade
+    depends_on:
+      - db-postgres
   api:
     build: .
     ports:
@@ -36,12 +36,12 @@ services:
       - broker-rabbitmq
       - db-postgres
       - migration
-    api-beat:
-      build: .
-      command: celery beat - A tasks.celery --loglevel.info
-      environment:
-        - APP_ENV=${APP_ENV}
-      depends_on:
-        - broker-rabbitmq
-        - db-postgres
-        - migration
+  api-beat:
+    build: .
+    command: celery beat - A tasks.celery --loglevel.info
+    environment:
+      - APP_ENV=${APP_ENV}
+    depends_on:
+      - broker-rabbitmq
+      - db-postgres
+      - migration
