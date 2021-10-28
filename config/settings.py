@@ -17,7 +17,7 @@ class DevConfig(BaseConfig):
 class ProductionConfig(BaseConfig):
     FLASK_ENV = "production"
     SQLALCHEMY_DATABASE_URI = (
-        "postgresql://db_user:db_password@db-postgres:5432/flask-deploy"
+        "postgresql://db_user:db_password@db-postgres:5432/subway_usage_dev"
     )
     CELERY_BROKER = "pyamqp://rabbit_user:rabbit_password@broker-rabbitmq//"
     CELERY_RESULT_BACKEND = "rpc://rabbit_user:rabbit_password@broker-rabbitmq//"
