@@ -1,6 +1,6 @@
 import time
 from flask import jsonify
-from flask_restful import API, Resource
+from flask_restful import Api, Resource
 from tasks import celery
 import config
 
@@ -25,7 +25,7 @@ def process_data():
 
 
 # data processing endpoint
-api.add_resource(DataProcesingAPI, "/process_data")
+api.add_resource(DataProcessingAPI, "/process_data")
 
 # task status endpoint
 api.add_resource(TaskStatusAPI, "/tasks/<string:task_id>")

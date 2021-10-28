@@ -1,4 +1,13 @@
+import logging
+import os
+import config
+
 from flask import Flask
+from flask_migrate import Migrate
+
+from api import api
+from models import db
+
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -17,10 +26,11 @@ def create_app():
     api.init_app(app)
     # initialize sql alchemy
     db.init_app(app)
+    migrate = Migrate(app, db)
 
     @app.route("/")
     def hello_world():
-        return "Hello, world"
+        return "Hello, test"
 
     return app
 
@@ -28,3 +38,16 @@ def create_app():
 if __name__ == "__main__":
     app = create_app()
     app.run(host="0.0.0.0", debug=True)
+
+
+# old content
+# from flask import Flask
+# from flask_migrate import Migrate
+
+# app = Flask(__name__)
+# migrate = Migrate(app, db)
+
+
+# @app.route("/", methods=["GET"])
+# def hello_world():
+#     return {"hello": "world"}
